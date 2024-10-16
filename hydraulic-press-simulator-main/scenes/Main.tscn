@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://2cdvfll76brj"]
+
+[ext_resource type="Texture2D" uid="uid://wm3r3t7vp0k5" path="res://assetz/asset-01.png" id="1_7gjft"]
+[ext_resource type="Texture2D" uid="uid://dhm6fkfasxepg" path="res://assetz/asset-02.png" id="2_1h28l"]
+[ext_resource type="Script" path="res://scenes/MainBar.gd" id="2_7qbd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8gm2"]
+size = Vector2(50.4, 141.12)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_as_relative = false
+texture_filter = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MainBar" type="Sprite2D" parent="."]
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+position = Vector2(161, 540)
+texture = ExtResource("1_7gjft")
+script = ExtResource("2_7qbd6")
+
+[node name="PlayerBarAnchor" type="Node2D" parent="MainBar"]
+position = Vector2(0, 426)
+rotation = 3.14159
+
+[node name="PlayerBar" type="Sprite2D" parent="MainBar/PlayerBarAnchor"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource("2_1h28l")
+
+[node name="Area2D" type="Area2D" parent="MainBar/PlayerBarAnchor/PlayerBar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainBar/PlayerBarAnchor/PlayerBar/Area2D"]
+visible = false
+position = Vector2(4.57764e-05, 0)
+shape = SubResource("RectangleShape2D_e8gm2")
+
+[node name="Asset-01" type="Sprite2D" parent="."]
+position = Vector2(271, 543)
+scale = Vector2(1, 0.8)
+texture = ExtResource("1_7gjft")

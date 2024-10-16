@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgy2ndij0qfff"]
+
+[ext_resource type="Texture2D" uid="uid://cxot0m5fcov3m" path="res://assetz/asset-03-03.png" id="1_80h0h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrqiv"]
+radius = 25.02
+
+[node name="Target" type="Node2D"]
+
+[node name="FollowSprite" type="Sprite2D" parent="."]
+texture_filter = 5
+texture = ExtResource("1_80h0h")
+
+[node name="Area2D" type="Area2D" parent="FollowSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FollowSprite/Area2D"]
+shape = SubResource("CircleShape2D_mrqiv")
