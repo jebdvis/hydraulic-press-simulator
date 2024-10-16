@@ -15,7 +15,6 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if playerBar.position.y <= 0:
-		playerBar.position.y = 1
 		barVelocity = barVelocity * -.5
 	elif playerBar.position.y >= maxBarY:
 		barVelocity = 0
@@ -26,6 +25,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		barVelocity += barGrav * delta
 		
-	
-		
-	playerBar.position.y += barVelocity
+	var testPos = playerBar.position.y + barVelocity
+	if testPos <= 0:
+		barVelocity = barVelocity * -.5
+	elif playerBar.position.y >= maxBarY:
+		barVelocity = 0
+		playerBar.position.y = maxBarY
+	else:
+		playerBar.position.y += barVelocity
