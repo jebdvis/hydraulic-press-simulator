@@ -1,16 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://2cdvfll76brj"]
+[gd_scene load_steps=5 format=3 uid="uid://2cdvfll76brj"]
 
 [ext_resource type="Texture2D" uid="uid://wm3r3t7vp0k5" path="res://assetz/asset-01.png" id="1_7gjft"]
-[ext_resource type="Script" path="res://scenes/main_controller.gd" id="1_15yxh"]
 [ext_resource type="Texture2D" uid="uid://dhm6fkfasxepg" path="res://assetz/asset-02.png" id="2_1h28l"]
 [ext_resource type="Script" path="res://scenes/MainBar.gd" id="2_7qbd6"]
-[ext_resource type="Texture2D" uid="uid://dfxowqto0iuo0" path="res://assetz/progress.png" id="5_lmk58"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8gm2"]
 size = Vector2(50.4, 141.12)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_15yxh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_as_relative = false
@@ -32,7 +29,6 @@ rotation = 3.14159
 [node name="PlayerBar" type="Sprite2D" parent="MainBar/ZeroAnchor"]
 z_index = 1
 z_as_relative = false
-texture_filter = 2
 texture = ExtResource("2_1h28l")
 
 [node name="Area2D" type="Area2D" parent="MainBar/ZeroAnchor/PlayerBar"]
@@ -41,15 +37,3 @@ texture = ExtResource("2_1h28l")
 visible = false
 position = Vector2(4.57764e-05, 0)
 shape = SubResource("RectangleShape2D_e8gm2")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-texture_filter = 1
-offset_left = 213.0
-offset_top = 38.0
-offset_right = 276.0
-offset_bottom = 1047.0
-max_value = 1000.0
-fill_mode = 3
-texture_over = ExtResource("1_7gjft")
-texture_progress = ExtResource("5_lmk58")
-texture_progress_offset = Vector2(6, 4)
