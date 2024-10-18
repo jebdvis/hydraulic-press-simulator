@@ -15,9 +15,8 @@ func targetLoop(minDistance, maxDistance, moveTime, holdTimeMax, holdTimeMin) ->
 	while (abs(self.position.y - selfTarget) < minDistance) or (abs(self.position.y - selfTarget) > maxDistance):
 		selfTarget = randf_range(0, get_parent().get_parent().maxBarY)
 		
-	print(self.position.y - selfTarget)
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", Vector2(0,selfTarget), moveTime).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self, "position", Vector2(0,selfTarget), moveTime).set_trans(Tween.TRANS_QUINT)
 
 	var timerVar = randf_range(holdTimeMin,holdTimeMin)
 	await get_tree().create_timer(timerVar).timeout
