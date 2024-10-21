@@ -8,8 +8,6 @@ var currentStrength: float = 0.0
 
 func _ready():
 	ShakeBus.shakeTriggered.connect(doShake)
-	var tween = create_tween()
-	tween.tween_property(self,"position:y", 1100, 5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

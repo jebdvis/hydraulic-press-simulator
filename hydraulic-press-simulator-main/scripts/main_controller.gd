@@ -10,4 +10,4 @@ func _physics_process(delta):
 		progBar.value += 3
 	else:
 		progBar.value -= 3
-	ShakeBus.triggerShake(($TextureProgressBar.value/$TextureProgressBar.max_value) * 5, 0)
+	ShakeBus.triggerShake(($TextureProgressBar.value/$TextureProgressBar.max_value) * 8, 0)
