@@ -9,7 +9,7 @@ extends Node2D
 func _ready():
 	randomize()
 
-func targetLoop(minDistance, maxDistance, moveTime, holdTimeMax, holdTimeMin) -> bool:
+func targetLoop(minDistance:float, maxDistance:float, moveTime:float, holdTimeMax:float, holdTimeMin:float) -> bool:
 	var selfTarget = randf_range(0, get_parent().get_parent().maxBarY)
 	
 	while (abs(self.position.y - selfTarget) < minDistance) or (abs(self.position.y - selfTarget) > maxDistance):
