@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://2cdvfll76brj"]
+[gd_scene load_steps=27 format=3 uid="uid://2cdvfll76brj"]
 
 [ext_resource type="Texture2D" uid="uid://wm3r3t7vp0k5" path="res://assetz/asset-01.png" id="1_7gjft"]
 [ext_resource type="Script" path="res://scripts/main_controller.gd" id="1_15yxh"]
 [ext_resource type="Texture2D" uid="uid://dhm6fkfasxepg" path="res://assetz/asset-02.png" id="2_1h28l"]
 [ext_resource type="Script" path="res://scripts/MainBar.gd" id="2_7qbd6"]
+[ext_resource type="Script" path="res://scripts/diffLvls.gd" id="2_gqioy"]
 [ext_resource type="Resource" uid="uid://dd2tm6xounlax" path="res://levelResources/level1.tres" id="2_wlohm"]
 [ext_resource type="Resource" uid="uid://463sib4iq7k" path="res://levelResources/level2.tres" id="3_gbtvu"]
 [ext_resource type="Texture2D" uid="uid://dfxowqto0iuo0" path="res://assetz/progress.png" id="5_lmk58"]
@@ -78,17 +79,34 @@ tracks/0/path = NodePath("Hand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 1.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(190, 684), Vector2(517, 684)]
+}
+
+[sub_resource type="Animation" id="Animation_itile"]
+resource_name = "move-hand-back"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(517, 684), Vector2(190, 684)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m4l4a"]
 _data = {
 "RESET": SubResource("Animation_f8h8m"),
 "hydraulic-press": SubResource("Animation_rn1x7"),
-"move-hand": SubResource("Animation_0yabt")
+"move-hand": SubResource("Animation_0yabt"),
+"move-hand-back": SubResource("Animation_itile")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cv8ko"]
@@ -102,7 +120,7 @@ size = Vector2(600, 85)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_15yxh")
-diffLvls = [ExtResource("2_wlohm"), ExtResource("3_gbtvu")]
+diffLvls = Array[ExtResource("2_gqioy")]([ExtResource("2_wlohm"), ExtResource("3_gbtvu")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_as_relative = false
