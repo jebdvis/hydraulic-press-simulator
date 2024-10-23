@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DiffLvls" load_steps=3 format=3 uid="uid://dd2tm6xounlax"]
+
+[ext_resource type="Script" path="res://scripts/diffLvls.gd" id="1_irdw5"]
+[ext_resource type="PackedScene" uid="uid://c867bk7ym3yby" path="res://scenes/softbodies/egg_softbody.tscn" id="2_5kb7w"]
+
+[resource]
+script = ExtResource("1_irdw5")
+minDistance = 300.0
+maxDistance = 400.0
+moveTime = 3.0
+holdTimeMax = 4.0
+holdTimeMin = 3.0
+softbody = ExtResource("2_5kb7w")

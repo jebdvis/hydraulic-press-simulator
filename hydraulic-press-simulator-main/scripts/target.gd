@@ -1,11 +1,5 @@
 extends Node2D
 
-@export var minDistance:float = 650
-@export var maxDistance:float = 700
-@export var moveTime:float = 3
-@export var holdTimeMax:float = 4
-@export var holdTimeMin:float = 2
-
 func _ready():
 	randomize()
 

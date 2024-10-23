@@ -4,11 +4,13 @@ extends Node2D
 @onready var progBar = $TextureProgressBar
 @onready var maxProg = progBar.max_value
 @onready var animPlayer = $AnimationPlayer
+@export var diffLvls:Array[DiffLvls]
 
 var progTracker = 0
 var gameRunning: bool
-var levelCount: int
+var levelCount = 0
 var currSoftBody:SoftBody2D
+var currLvl: DiffLvls
 
 func playing():
 	var posTargets = targetDetector.get_overlapping_areas()
@@ -25,17 +27,20 @@ func playing():
 		animPlayer.pause()
 
 func _ready():
-	levelCount = 0
 	gameRunning = false
-	currSoftBody = $SoftBody2D
 	animPlayer.play("move-hand")
+	currLvl = diffLvls[0]
+	currSoftBody = currLvl.softbody.instantiate()
+	$Spawner.add_child(currSoftBody)
+	
 
 func _physics_process(delta):
+	print(animPlayer.is_playing())
 	if $Area2D.get_overlapping_bodies() and gameRunning == false:
 		gameRunning = true
-		animPlayer.play("move-hand",-1,-1,true)
+		animPlayer.play_backwards("move-hand")
 		await animPlayer.animation_finished
-		$MainBar.instNewTarg(300,400,3,4,2)
+		$MainBar.instNewTarg(currLvl.minDistance,currLvl.maxDistance,currLvl.moveTime,currLvl.holdTimeMax,currLvl.holdTimeMin)
 		animPlayer.set_current_animation("hydraulic-press")
 		animPlayer.pause()
 		levelCount += 1
@@ -47,8 +52,16 @@ func _physics_process(delta):
 			progBar.value = 0
 			progTracker = 0
 			ShakeBus.triggerShake(($TextureProgressBar.value/$TextureProgressBar.max_value) * 8, 1)
+			animPlayer.play("hydraulic-press",-1,-1,true)
+			await animPlayer.animation_finished
+			if levelCount -1 > diffLvls.size():
+				print("uhhhh game should end")
+				#end game statement
+				pass
+			animPlayer.play("move-hand")
+			currLvl = diffLvls[levelCount]
+			currSoftBody = currLvl.softbody.instantiate()
+			$Spawner.add_child(currSoftBody)
+			await animPlayer.animation_finished
 			gameRunning = false
-			animPlayer.animation_set_next("hydraulic-press","move-hand")
-			animPlayer.play_backwards("hydraulic-press")
-		
-	pass
+			

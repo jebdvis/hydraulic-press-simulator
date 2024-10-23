@@ -1,9 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://2cdvfll76brj"]
+[gd_scene load_steps=25 format=3 uid="uid://2cdvfll76brj"]
 
 [ext_resource type="Texture2D" uid="uid://wm3r3t7vp0k5" path="res://assetz/asset-01.png" id="1_7gjft"]
 [ext_resource type="Script" path="res://scripts/main_controller.gd" id="1_15yxh"]
 [ext_resource type="Texture2D" uid="uid://dhm6fkfasxepg" path="res://assetz/asset-02.png" id="2_1h28l"]
 [ext_resource type="Script" path="res://scripts/MainBar.gd" id="2_7qbd6"]
+[ext_resource type="Resource" uid="uid://dd2tm6xounlax" path="res://levelResources/level1.tres" id="2_wlohm"]
+[ext_resource type="Resource" uid="uid://463sib4iq7k" path="res://levelResources/level2.tres" id="3_gbtvu"]
 [ext_resource type="Texture2D" uid="uid://dfxowqto0iuo0" path="res://assetz/progress.png" id="5_lmk58"]
 [ext_resource type="Texture2D" uid="uid://be5fu0th3nrbc" path="res://assetz/ramp.svg" id="7_fw3il"]
 [ext_resource type="Script" path="res://scripts/test_shake.gd" id="7_w8mht"]
@@ -11,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bs5kvwrqx1vlk" path="res://assetz/press.svg" id="9_8pwr2"]
 [ext_resource type="Texture2D" uid="uid://ceg51nv58ncsy" path="res://assetz/hand.svg" id="10_05sdp"]
 [ext_resource type="Texture2D" uid="uid://ckd0naak8br5d" path="res://assetz/bar-06.svg" id="11_ac7ld"]
-[ext_resource type="PackedScene" uid="uid://c867bk7ym3yby" path="res://scenes/egg_softbody.tscn" id="12_0qxrb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8gm2"]
 size = Vector2(50.4, 141.12)
@@ -101,6 +102,7 @@ size = Vector2(600, 85)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_15yxh")
+diffLvls = [ExtResource("2_wlohm"), ExtResource("3_gbtvu")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_as_relative = false
@@ -223,12 +225,12 @@ rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_6dn0u")
 disabled = true
 
-[node name="SoftBody2D" parent="." instance=ExtResource("12_0qxrb")]
-position = Vector2(2510, -20)
-
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1060, 772)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2, 32.5)
 shape = SubResource("RectangleShape2D_k2k8i")
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(2612, -27)
