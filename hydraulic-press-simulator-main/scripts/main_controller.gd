@@ -35,7 +35,7 @@ func _ready():
 	$Spawner.add_child(currSoftBody)
 	
 
-func _physics_process(delta):   
+func _physics_process(delta):
 	if $Area2D.get_overlapping_bodies() and gameRunning == false:
 		gameRunning = true
 		await get_tree().create_timer(2).timeout  
@@ -59,13 +59,13 @@ func _physics_process(delta):
 			ShakeBus.triggerShake(($TextureProgressBar.value/$TextureProgressBar.max_value) * 8, 1)
 			animPlayer.play_backwards("hydraulic-press")
 			await animPlayer.animation_finished
-			if levelCount -1 > diffLvls.size():
+			if levelCount >= diffLvls.size():
 				print("uhhhh game should end")
-				#end game statement
-				pass
-			animPlayer.play("move-hand")
-			currLvl = diffLvls[levelCount]
-			currSoftBody = currLvl.softbody.instantiate()
-			$Spawner.add_child(currSoftBody)
-			await animPlayer.animation_finished
+				get_tree().reload_current_scene()
+			else:
+				animPlayer.play("move-hand")
+				currLvl = diffLvls[levelCount]
+				currSoftBody = currLvl.softbody.instantiate()
+				$Spawner.add_child(currSoftBody)
+				await animPlayer.animation_finished
 			

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://2cdvfll76brj"]
+[gd_scene load_steps=28 format=3 uid="uid://2cdvfll76brj"]
 
 [ext_resource type="Texture2D" uid="uid://wm3r3t7vp0k5" path="res://assetz/asset-01.png" id="1_7gjft"]
 [ext_resource type="Script" path="res://scripts/main_controller.gd" id="1_15yxh"]
@@ -108,6 +108,9 @@ _data = {
 "move-hand": SubResource("Animation_0yabt"),
 "move-hand-back": SubResource("Animation_itile")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t823"]
+size = Vector2(608, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cv8ko"]
 size = Vector2(606, 140)
@@ -227,6 +230,13 @@ position = Vector2(0, -609)
 position = Vector2(1064, 375)
 texture = ExtResource("9_8pwr2")
 script = ExtResource("7_w8mht")
+
+[node name="Area2D" type="Area2D" parent="press-hold/Press"]
+position = Vector2(0, 418)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="press-hold/Press/Area2D"]
+position = Vector2(-1, 28)
+shape = SubResource("RectangleShape2D_1t823")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="press-hold"]
 position = Vector2(1064, 793)

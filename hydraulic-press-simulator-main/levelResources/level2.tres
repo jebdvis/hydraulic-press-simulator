@@ -7,7 +7,7 @@
 script = ExtResource("1_mc1o8")
 minDistance = 400.0
 maxDistance = 550.0
-moveTime = 1.0
+moveTime = 3.0
 holdTimeMax = 3.0
 holdTimeMin = 2.0
 softbody = ExtResource("2_aloyo")
