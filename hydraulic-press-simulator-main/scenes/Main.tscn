@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://2cdvfll76brj"]
+[gd_scene load_steps=34 format=3 uid="uid://2cdvfll76brj"]
 
 [ext_resource type="Texture2D" uid="uid://wm3r3t7vp0k5" path="res://assetz/asset-01.png" id="1_7gjft"]
 [ext_resource type="Script" path="res://scripts/main_controller.gd" id="1_15yxh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/diffLvls.gd" id="2_gqioy"]
 [ext_resource type="Resource" uid="uid://dd2tm6xounlax" path="res://levelResources/level1.tres" id="2_wlohm"]
 [ext_resource type="Resource" uid="uid://463sib4iq7k" path="res://levelResources/level2.tres" id="3_gbtvu"]
+[ext_resource type="Resource" uid="uid://v05dtm4xx35l" path="res://levelResources/level3.tres" id="5_gj2r1"]
 [ext_resource type="Texture2D" uid="uid://dfxowqto0iuo0" path="res://assetz/progress.png" id="5_lmk58"]
 [ext_resource type="Texture2D" uid="uid://be5fu0th3nrbc" path="res://assetz/ramp.svg" id="7_fw3il"]
 [ext_resource type="Script" path="res://scripts/test_shake.gd" id="7_w8mht"]
@@ -14,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://bs5kvwrqx1vlk" path="res://assetz/press.svg" id="9_8pwr2"]
 [ext_resource type="Texture2D" uid="uid://ceg51nv58ncsy" path="res://assetz/hand.svg" id="10_05sdp"]
 [ext_resource type="Texture2D" uid="uid://ckd0naak8br5d" path="res://assetz/bar-06.svg" id="11_ac7ld"]
+[ext_resource type="AudioStream" uid="uid://c1gjwa5so28bv" path="res://assetz/sound/hydraulic_press_going.mp3" id="15_lvo0i"]
+[ext_resource type="AudioStream" uid="uid://bawanakkskto0" path="res://assetz/sound/press_winddown.mp3" id="16_6xsup"]
+[ext_resource type="AudioStream" uid="uid://bn3fl2fk476p" path="res://assetz/sound/press_up.mp3" id="17_cx8ao"]
+[ext_resource type="AudioStream" uid="uid://dkssgu1mbe2hy" path="res://assetz/sound/hand_move.mp3" id="18_6ffim"]
+[ext_resource type="AudioStream" uid="uid://ca2xg2csx5oay" path="res://assetz/sound/squishes.mp3" id="19_bcke2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8gm2"]
 size = Vector2(50.4, 141.12)
@@ -123,7 +129,7 @@ size = Vector2(600, 85)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_15yxh")
-diffLvls = Array[ExtResource("2_gqioy")]([ExtResource("2_wlohm"), ExtResource("3_gbtvu")])
+diffLvls = Array[ExtResource("2_gqioy")]([ExtResource("2_wlohm"), ExtResource("3_gbtvu"), ExtResource("5_gj2r1")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_as_relative = false
@@ -261,4 +267,38 @@ position = Vector2(2, 32.5)
 shape = SubResource("RectangleShape2D_k2k8i")
 
 [node name="Spawner" type="Node2D" parent="."]
-position = Vector2(2612, -27)
+position = Vector2(2515, 9)
+
+[node name="press_go" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_lvo0i")
+volume_db = 24.0
+
+[node name="press_stop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_6xsup")
+volume_db = 24.0
+
+[node name="press_up" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_cx8ao")
+volume_db = 24.0
+
+[node name="hand_move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_6ffim")
+volume_db = 9.946
+
+[node name="squish" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_bcke2")
+volume_db = 16.505
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 685.0
+offset_top = 415.0
+offset_right = 1432.0
+offset_bottom = 628.0
+theme_override_font_sizes/font_size = 50
+text = "You've crushed 'em all!
+Care to crush some more!?
+(You gotta press the space bar)"
+horizontal_alignment = 1
